@@ -11,6 +11,14 @@ def symmetrical_nist(text_pair):
     :param text_pair: iterable to two strings to compare
     :return: a float
     """
+    t1,t2 = text_pair
+
+    t1_toks = word_tokenize(t1,lower())
+    t2_toks = word_tokenize(t2,lower())
+
+    try:
+        nist_1 = sentence_nist([t1_toks,], t2_toks)
+
     nist_1 = 0.0
     nist_2 = 0.0
 
