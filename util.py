@@ -1,4 +1,6 @@
 # TODO: lab, homework
+import codecs
+
 def parse_sts(data_file):
     """
     Reads a tab-separated sts benchmark file and returns
@@ -8,7 +10,7 @@ def parse_sts(data_file):
     texts = []
     labels = []
 
-    with open(data_file, "r") as df:
+    with codecs.open(data_file, "r", "utf-8") as df:
         for line in df:
             fields = line.strip().split("\t")
             labels.append(float(fields[4])) # the score
