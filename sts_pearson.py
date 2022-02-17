@@ -2,7 +2,7 @@ from scipy.stats import pearsonr
 import argparse
 from util import parse_sts
 from nltk.translate.nist_score import sentence_nist
-from nltk.translate.bleu_score import sentence_bleu
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from nltk import word_tokenize, edit_distance
 from difflib import SequenceMatcher
 import warnings
@@ -50,12 +50,12 @@ def main(sts_data):
 
         # bleu
         try:
-            bleu_1 = sentence_bleu([t1_toks, ], t2_toks, smoothing_function=None)
+            bleu_1 = sentence_bleu([t1_toks, ], t2_toks, smoothing_function=SmoothingFunction().method0)
         except ZeroDivisionError:
             bleu_1 = 0.0
 
         try:
-            bleu_2 = sentence_bleu([t2_toks, ], t1_toks, smoothing_function=None)
+            bleu_2 = sentence_bleu([t2_toks, ], t1_toks, smoothing_function=SmoothingFunction().method0)
         except ZeroDivisionError:
             bleu_2 = 0.0
 
